@@ -1,30 +1,22 @@
 import React, { createContext } from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
-import { createNodes, reduxStore, updateNode } from '../state/createState';
-import { createStore } from '../state/store';
-import { MyNode } from '../types/types';
+import styled from 'styled-components';
+import { createNodes, reduxStore, updateNode } from '../../state/createState';
+import { createStore } from '../../state/store';
+import { MyNode } from '../../types/types';
 import { Node } from './Node';
 
 const actions = {
   setColor(state: MyNode, { key, color }: { key: string; color: string }) {
     return setColor(state, state, key, color);
   },
-
-  setCount(state: MyNode, { key, count }: { key: string; count: number }) {
-    return updateNode(state, key, { count });
-  },
 };
 
-export const Context = createContext(null as any);
 export const store = createStore(createNodes(), actions);
 
-export const Stateful = () => {
+export const ColorTree = () => {
   return (
-    <ReduxProvider store={reduxStore}>
-      <Context.Provider value={{}}>
-        <Node id="0" />
-      </Context.Provider>
-    </ReduxProvider>
+      <StyledNode id="0" />
   );
 };
 
@@ -51,3 +43,8 @@ export function setColor(root: MyNode, parent: MyNode, key: string, color: strin
 
   return root;
 }
+
+const StyledNode = styled(Node)`
+  height: 100%;
+  margin: 0;
+`;

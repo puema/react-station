@@ -24,7 +24,7 @@ export function createStore<S, A extends ActionsWithState<S>>(initialState: S, i
   return {
     setState,
 
-    useSelect(select: (s: S) => any = s => s) {
+    useSelect(select: (s: S) => unknown = s => s) {
       const [, forceUpdate] = useState();
       const lastSelected = useRef(select(store.state));
       useEffect(() => {
@@ -45,7 +45,7 @@ export function createStore<S, A extends ActionsWithState<S>>(initialState: S, i
 
 export function useSelect<S, A extends ActionsWithState<S>>(
   store: Store<S, A>,
-  select: (s: S) => any = s => s
+  select: (s: S) => unknown = s => s
 ) {
   return store.useSelect(select);
 }
@@ -57,7 +57,7 @@ function injectState<A extends ActionsWithState<S>, S>(
 ) {
   return Object.keys(actionsWithState).reduce(
     (actions, key) => {
-      actions[key] = (...args: any[]) => setState(actionsWithState[key](state, ...args));
+      actions[key] = (...args: unknown[]) => setState(actionsWithState[key](state, ...args));
       return actions;
     },
     {} as Actions
