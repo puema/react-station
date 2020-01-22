@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { findNode } from '../../state/createState';
-import { useSelect } from '../../state/store';
+import { useStore } from '../../state/store';
 import { store } from './ColorTree';
 
 export const Node = memo(({ id, className }: { id: string; className?: string }) => {
-  const { state, actions } = useSelect(store, s => findNode(s, id));
+  const { state, actions } = useStore(store, s => findNode(s, id));
   const node = findNode(state, id);
   if (!node) return null;
   const { key, value, children } = node;

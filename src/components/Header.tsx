@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export function Header() {
   return (
     <StyledHeader>
-      <span>Update</span>
-      <span>Async Calls</span>
+      <Link to="/">Update</Link>
+      <Link to="async-calls">Async Calls</Link>
       <span>Mount/Unmount</span>
     </StyledHeader>
   );
