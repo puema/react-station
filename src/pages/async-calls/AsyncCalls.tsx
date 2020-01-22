@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { createStore, useStore } from '../../state/store';
+import { createStore, useStore } from '../../lib/store';
 
 const initialState = {
   loading: false,
   count: 0,
 };
-
-type State = typeof initialState;
 
 const actions = {
   start: async () => {

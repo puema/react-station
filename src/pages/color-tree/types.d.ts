@@ -10,11 +10,3 @@ export interface NodeValue {
 }
 
 export type MyNode = Node<NodeValue>;
-
-export interface WithClassName {
-  className?: string;
-}
-
-export interface VisibleProps {
-  isVisible?: boolean;
-}

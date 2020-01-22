@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { MyNode, Node as NodeType, NodeValue } from '../types/types';
+import { MyNode, Node as NodeType, NodeValue } from './types';
 
 export const maxDepth = 4;
 
