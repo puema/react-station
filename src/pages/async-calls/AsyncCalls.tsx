@@ -27,8 +27,8 @@ export function AsyncCalls() {
 
   return (
     <StyledAsyncCalls>
-      <span>{loading ? 'Loading...' : `Value: ${count}`}</span>
-      <Button onClick={start}>Very expensive task</Button>
+      <button onClick={start}>Very expensive calculation</button>
+      <span>{loading ? `Calculating ${count} + 1...` : `Value: ${count}`}</span>
     </StyledAsyncCalls>
   );
 }
@@ -37,7 +37,7 @@ async function expensive() {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve();
-    }, 200);
+    }, 600);
   });
 }
 
@@ -46,12 +46,5 @@ const StyledAsyncCalls = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Button = styled.button`
-  margin: 16px;
-  padding: 16px;
-  font-size: 14px;
-  background-color: #cccccc;
-  border-radius: 99px;
+  flex-direction: column;
 `;

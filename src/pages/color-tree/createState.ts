@@ -7,7 +7,7 @@ export const createNodes = (depth: number = 0, key: string = '0'): MyNode => {
   const node: MyNode = {
     key,
     value: {
-      color: `rgba(0, 0, 0, 0.1)`,
+      color: `rgba(255, 255, 255, 0.1)`,
       count: 0,
     },
     children: [],

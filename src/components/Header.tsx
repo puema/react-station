@@ -7,7 +7,7 @@ export function Header() {
     <StyledHeader>
       <Link to="/">Update</Link>
       <Link to="async-calls">Async Calls</Link>
-      <span>Mount/Unmount</span>
+      <Link to="mount-unmount">Mount/Unmount</Link>
     </StyledHeader>
   );
 }

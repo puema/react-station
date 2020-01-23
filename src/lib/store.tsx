@@ -34,14 +34,20 @@ export function createStore<S, A extends ActionsWithState<S>>(initialState: S, i
       const [, forceUpdate] = useState();
       const lastSelected = useRef(select(store.state));
       useEffect(() => {
-        listeners.push(() => {
+        const listener = () => {
           const selected = select(store.state);
           if (selected !== lastSelected.current) {
             forceUpdate({});
             lastSelected.current = selected;
           }
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        };
+        listeners.push(listener);
+        return () => {
+          listeners.splice(
+            listeners.findIndex(l => l === listener),
+            1
+          );
+        };
       }, []);
       store.actions = injectState(initialActions, store.state, setState);
       return store;

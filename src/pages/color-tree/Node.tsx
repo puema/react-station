@@ -34,7 +34,7 @@ function stopPropagation<F extends Function>(fn?: F) {
 
 function generateRandomColor() {
   const random = () => Math.random() * 255;
-  return `rgb(${random()}, ${random()}, ${random()})`;
+  return `rgba(${random()}, ${random()}, ${random()}, 0.2)`;
 }
 
 const Container = styled.div`
