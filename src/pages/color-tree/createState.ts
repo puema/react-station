@@ -1,5 +1,4 @@
-import { createStore } from 'redux';
-import { MyNode, Node as NodeType, NodeValue } from './types';
+import { MyNode, Node as NodeType } from './types';
 
 export const maxDepth = 4;
 
@@ -47,9 +46,3 @@ export function findNode<T>(node: NodeType<T>, key: string): NodeType<T> | undef
     if (result) return result;
   }
 }
-
-function reducer(state: MyNode = createNodes(), {key, value}: {key: string, value: Partial<NodeValue>}) {
-  return { ...updateNode(state, key, value) }
-}
-
-export const reduxStore = createStore(reducer as any);

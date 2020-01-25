@@ -8,26 +8,26 @@ const initialState = {
 };
 
 const actions = {
-  start: async () => {
+  add: async (state: typeof initialState, value: number): Promise<typeof initialState> => {
     store.setState({ loading: true });
     await expensive();
     return {
-      count: store.getState().count + 1,
+      count: store.getState().count + value,
       loading: false,
     };
   },
 };
 
-const store = createStore(initialState, actions as any);
+const store = createStore(initialState, actions);
 
 export function AsyncCalls() {
   const { state, actions } = useStore(store);
   const { count, loading } = state;
-  const { start } = actions;
+  const { add } = actions;
 
   return (
     <StyledAsyncCalls>
-      <button onClick={start}>Very expensive calculation</button>
+      <button onClick={() => add(1)}>Very expensive calculation</button>
       <span>{loading ? `Calculating ${count} + 1...` : `Value: ${count}`}</span>
     </StyledAsyncCalls>
   );
