@@ -1,44 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <p style="font-size: 64px">🚉</p>
+  <p style="font-size: 24px">
+    <b>Sta</b>te & Ac<b>tion</b>
+  </p>
+  <p>
+  Easy to use state and actions for React. Optimized rerenders with state selection. Typesafe. Async actions.
+  </p>
+  <br />
+  <img src="https://img.shields.io/npm/v/react-staction.svg?style=flat-square" alt="npm">
+  <img src="https://badgen.net/bundlephobia/minzip/react-station" alt="gzip size">
+  <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+</div>
 
-## Available Scripts
+## Why
 
-In the project directory, you can run:
+😎 Easy to use
 
-### `yarn start`
+🦶 Small footprint
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+🚀 Performance optimized
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+⛑ Typesafe with TypeScript
 
-### `yarn test`
+## Usage
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+const initialState = {
+  count: 0,
+};
 
-### `yarn build`
+type State = typeof initialState;
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const actions = {
+  add: ({ count }: State, value: number) {
+    return {
+      count: count + value,
+    };
+  },
+};
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+const store = createStore(initialState, actions);
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export const Component = () => {
+  // optionally select state to avoid unnecessary rerenders
+  const { state, actions } = useStore(store, s => s.count);
+  const { count } = state;
+  const { add } = actions;
 
-### `yarn eject`
+  return (
+    <>
+      <button onClick={() => add(1)}>Very expensive calculation</button>
+      <span>{value}</span>
+    </>
+  );
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```

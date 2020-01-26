@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { createStore } from '../../lib/store';
+import { createStore } from '../../lib';
 import { createNodes } from './createState';
 import { Node } from './Node';
 import { MyNode } from './types';

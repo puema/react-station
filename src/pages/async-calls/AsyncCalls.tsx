@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { createStore, useStore } from '../../lib/store';
+import { createStore, useStore } from '../../lib';
 
 const initialState = {
   loading: false,

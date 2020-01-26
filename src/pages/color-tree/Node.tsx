@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 import { findNode } from './createState';
-import { useStore } from '../../lib/store';
+import { useStore } from '../../lib';
 import { store } from './ColorTree';
 
 export const Node = memo(({ id, className }: { id: string; className?: string }) => {
