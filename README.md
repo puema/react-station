@@ -14,13 +14,10 @@
 
 ## Why
 
-😎 Easy to use
-
-🦶 Small footprint
-
-🚀 Performance optimized
-
-⛑ Typesafe with TypeScript
+😎 Easy to use <br />
+🦶 Small footprint <br />
+🚀 Performance optimized <br />
+⛑ Typesafe with TypeScript <br />
 
 ## Usage
 
