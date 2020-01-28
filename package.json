@@ -2,6 +2,7 @@
   "name": "react-station",
   "version": "0.1.0",
   "license": "MIT",
+  "homepage": "http://puema.github.io/react-station/",
   "dependencies": {
     "unistore": "^3.5.1"
   },
@@ -13,6 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -41,6 +44,7 @@
     "@types/redux": "^3.6.0",
     "@types/smoothscroll-polyfill": "0.3.1",
     "@types/styled-components": "^4.4.0",
+    "gh-pages": "^2.2.0",
     "prettier": "^1.18.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
