@@ -1,14 +1,11 @@
 <div align="center">
   <img width="128px" src="./docs/station.png" alt="station">
   <p>
-    <font size="18px">
-      <b>Sta</b>te & Ac<b>tion</b>
-    </font>
+    <b>Sta</b>te & Ac<b>tion</b>
   </p>
   <p>
-  Easy to use state and actions for React. Optimized rerenders with state selection. Typesafe. Async actions.
+    Easy to use state and actions for React. Optimized rerenders with state selection. Typesafe. Async actions.
   </p>
-  <br />
   <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
 </div>
 
