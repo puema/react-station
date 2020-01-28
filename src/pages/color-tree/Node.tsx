@@ -5,9 +5,11 @@ import { useStore } from '../../lib';
 import { store } from './ColorTree';
 
 export const Node = memo(({ id, className }: { id: string; className?: string }) => {
-  const { state, actions } = useStore(store, s => findNode(s, id));
+  const { state, actions } = useStore(store);
+
   const node = findNode(state, id);
   if (!node) return null;
+
   const { key, value, children } = node;
   const { color } = value;
   const { setColor } = actions;
@@ -41,6 +43,8 @@ const Container = styled.div`
   display: grid;
   box-sizing: border-box;
   grid-template-columns: repeat(2, auto);
-  margin: 8px;
+  margin: 0.5vh 0.5vw;
+  min-width: 4px;
+  min-height: 4px;
   background-color: ${({ color }) => color};
 `;

@@ -1,22 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import { createStore, useStore } from '../../lib';
+import { createStore, Store, useStore } from '../../lib';
 
 const initialState = {
   loading: false,
   count: 0,
 };
 
-const actions = {
-  add: async (state: typeof initialState, value: number): Promise<typeof initialState> => {
-    store.setState({ loading: true });
+type State = typeof initialState;
+
+type Actions = {
+  add(state: State, value: number): Promise<State>;
+  load(state: State): Partial<State>;
+};
+
+const actions = ({ getActions }: Store<State, Actions>) => ({
+  async add(state: State, value: number): Promise<State> {
+    getActions().load();
     await expensive();
     return {
-      count: store.getState().count + value,
+      count: state.count + value,
       loading: false,
     };
   },
-};
+
+  load() {
+    return { loading: true };
+  },
+});
 
 const store = createStore(initialState, actions);
 
@@ -37,7 +48,7 @@ async function expensive() {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve();
-    }, 600);
+    }, 1000);
   });
 }
 

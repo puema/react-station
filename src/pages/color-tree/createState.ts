@@ -1,6 +1,6 @@
 import { MyNode, Node as NodeType } from './types';
 
-export const maxDepth = 4;
+export const maxDepth = 5;
 
 export const createNodes = (depth: number = 0, key: string = '0'): MyNode => {
   const node: MyNode = {

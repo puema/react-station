@@ -2,12 +2,17 @@ import { useEffect, useRef, useState } from 'react';
 
 export interface Store<S, A extends ActionMap<S>> {
   getState(): S;
-  setState(state: Partial<S>): void;
+  getActions(): BoundActionMap<A>;
+  setState(state: Partial<S> | Promise<Partial<S>>): void | Promise<void>;
   useStore(select?: (s: S) => any): { state: S; actions: BoundActionMap<A> };
 }
 
-export function createStore<S, A extends ActionMap<S>>(initialState: S, initialActions: A) {
+export function createStore<S, A extends ActionMap<S>>(
+  initialState: S,
+  initialActions: A | ((store: Store<S, A>) => A)
+) {
   let state = initialState;
+  let actions: BoundActionMap<A>;
   const listeners: (() => void)[] = [];
 
   async function setState(update: Partial<S> | Promise<Partial<S>>) {
@@ -19,6 +24,10 @@ export function createStore<S, A extends ActionMap<S>>(initialState: S, initialA
   return {
     getState() {
       return state;
+    },
+
+    getActions() {
+      return actions;
     },
 
     setState,
@@ -43,7 +52,7 @@ export function createStore<S, A extends ActionMap<S>>(initialState: S, initialA
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
-      const actions = bindActions(initialActions, state, setState);
+      actions = bindActions(this, initialActions);
       return { state, actions };
     },
   };
@@ -54,13 +63,15 @@ export function useStore<S, A extends ActionMap<S>>(store: Store<S, A>, select?:
 }
 
 function bindActions<A extends ActionMap<S>, S>(
-  actionsWithState: A,
-  state: S,
-  setState: (state: Partial<S> | Promise<Partial<S>>) => void
+  store: Store<S, A>,
+  unboundActions: A | ((store: Store<S, A>) => A)
 ) {
-  return Object.keys(actionsWithState).reduce((actions, key) => {
-    (actions[key] as any) = (...args: any[]) => setState(actionsWithState[key](state, ...args));
-    return actions;
+  const { getState, setState } = store;
+  const actions = typeof unboundActions === 'function' ? unboundActions(store) : unboundActions;
+
+  return Object.keys(actions).reduce((boundActions, key) => {
+    (boundActions[key] as any) = (...args: any[]) => setState(actions[key](getState(), ...args));
+    return boundActions;
   }, {} as BoundActionMap<A>);
 }
 

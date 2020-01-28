@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "license": "MIT",
   "dependencies": {
-
+    "unistore": "^3.5.1"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "compile": "tsc --build",
     "start": "react-scripts start",

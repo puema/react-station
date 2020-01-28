@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
     "rootDir": "src/lib",
-    "outDir": "target",
+    "outDir": "dist",
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,7 +22,10 @@
     "importHelpers": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "noEmit": true
   },
-  "include": ["src/lib"]
+  "include": [
+    "src/lib"
+  ]
 }
