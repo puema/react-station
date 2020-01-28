@@ -1,5 +1,5 @@
 <div align="center">
-  <p><font size="64px">🚉</font></p>
+  <img width="128px" src="./docs/station.png" alt="station">
   <p>
     <font size="18px">
       <b>Sta</b>te & Ac<b>tion</b>
