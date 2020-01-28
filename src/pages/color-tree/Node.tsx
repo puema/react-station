@@ -1,11 +1,17 @@
-import React, { memo } from 'react';
-import styled from 'styled-components';
-import { findNode } from './createState';
-import { useStore } from '../../lib';
-import { store } from './ColorTree';
+import React, { memo } from "react";
+import styled from "styled-components";
+import { useStore } from "../../lib";
+import { store } from "./ColorTree";
+import { findNode } from "./stateUtils";
 
-export const Node = memo(({ id, className }: { id: string; className?: string }) => {
-  const { state, actions } = useStore(store);
+interface NodeProps {
+  id: string;
+  className?: string;
+  useStateSelection?: boolean;
+}
+
+export const Node = memo(({ id, className, useStateSelection }: NodeProps) => {
+  const { state, actions } = useStore(store, useStateSelection ? s => findNode(s, id) : undefined);
 
   const node = findNode(state, id);
   if (!node) return null;
@@ -21,7 +27,7 @@ export const Node = memo(({ id, className }: { id: string; className?: string })
   return (
     <Container className={className} color={color} onClick={stopPropagation(changeColor)}>
       {children.map((child: any) => (
-        <Node key={child.key} id={child.key} />
+        <Node key={child.key} id={child.key} useStateSelection={useStateSelection} />
       ))}
     </Container>
   );
@@ -44,7 +50,7 @@ const Container = styled.div`
   box-sizing: border-box;
   grid-template-columns: repeat(2, auto);
   margin: 0.5vh 0.5vw;
-  min-width: 4px;
-  min-height: 4px;
+  min-width: 0.5vw;
+  min-height: 0.5vh;
   background-color: ${({ color }) => color};
 `;

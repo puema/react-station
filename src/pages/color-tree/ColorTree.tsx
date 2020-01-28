@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { createStore } from '../../lib';
-import { createNodes } from './createState';
+import { createNodes, setColor } from './stateUtils';
 import { Node } from './Node';
 import { MyNode } from './types';
 
@@ -14,34 +14,42 @@ const actions = {
 export const store = createStore(createNodes(), actions);
 
 export const ColorTree = () => {
-  return <StyledNode id="0" />;
+  const [useStateSelection, setUseStateSelection] = useState(true);
+
+  return (
+    <StyledColorTree>
+      <Checkbox>
+        <input
+          id="state-selection"
+          type="checkbox"
+          checked={useStateSelection}
+          onChange={() => setUseStateSelection(!useStateSelection)}
+        />
+        <label htmlFor="state-selection">Use State Selection to avoid unnecessary rerenders </label>
+        (Hint: Activate "Highlight updates" in React DevTools to verify)
+      </Checkbox>
+      <StyledNode key={useStateSelection.toString()} id="0" useStateSelection={useStateSelection} />
+    </StyledColorTree>
+  );
 };
 
-export function setColor(root: MyNode, parent: MyNode, key: string, color: string): MyNode {
-  if (root.key === key) {
-    root.value.color = color;
-    return { ...root };
+// ----==== Styles ====---- //
+const StyledColorTree = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Checkbox = styled.div`
+  margin: 8px;
+  color: #6f6f6f;
+  font-size: 12px;
+  & > input {
+    margin-right: 8px;
   }
-
-  let foundRightChildren = false;
-
-  if (parent.children.some(child => child.key === key)) {
-    foundRightChildren = true;
-  }
-
-  parent.children.forEach((child, i) => {
-    if (foundRightChildren) {
-      child.value.color = color;
-      parent.children[i] = { ...child };
-    } else {
-      setColor(root, parent.children[i], key, color);
-    }
-  });
-
-  return root;
-}
+`;
 
 const StyledNode = styled(Node)`
-  height: 100%;
+  flex-grow: 1;
   margin: 0;
 `;

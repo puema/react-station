@@ -46,3 +46,27 @@ export function findNode<T>(node: NodeType<T>, key: string): NodeType<T> | undef
     if (result) return result;
   }
 }
+
+export function setColor(root: MyNode, parent: MyNode, key: string, color: string): MyNode {
+  if (root.key === key) {
+    root.value.color = color;
+    return { ...root };
+  }
+
+  let foundRightChildren = false;
+
+  if (parent.children.some(child => child.key === key)) {
+    foundRightChildren = true;
+  }
+
+  parent.children.forEach((child, i) => {
+    if (foundRightChildren) {
+      child.value.color = color;
+      parent.children[i] = { ...child };
+    } else {
+      setColor(root, parent.children[i], key, color);
+    }
+  });
+
+  return root;
+}
