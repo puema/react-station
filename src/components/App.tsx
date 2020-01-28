@@ -8,15 +8,15 @@ import { Header } from './Header';
 
 export const App = () => {
   return (
-    <Router>
+    <Router basename="/">
       <StyledApp>
         <GlobalStyles />
         <Header />
         <Content>
           <Switch>
+            <Route path="/" exact component={ColorTree} />
             <Route path="/async-calls" component={AsyncCalls} />
             <Route path="/mount-unmount" component={MountUnmount} />
-            <Route path="/" component={ColorTree} />
           </Switch>
         </Content>
       </StyledApp>
