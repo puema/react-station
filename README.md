@@ -1,14 +1,14 @@
 <div align="center">
-  <p style="font-size: 64px">🚉</p>
-  <p style="font-size: 24px">
-    <b>Sta</b>te & Ac<b>tion</b>
+  <p><font size="64px">🚉</font></p>
+  <p>
+    <font size="18px">
+      <b>Sta</b>te & Ac<b>tion</b>
+    </font>
   </p>
   <p>
   Easy to use state and actions for React. Optimized rerenders with state selection. Typesafe. Async actions.
   </p>
   <br />
-  <img src="https://img.shields.io/npm/v/react-staction.svg?style=flat-square" alt="npm">
-  <img src="https://badgen.net/bundlephobia/minzip/react-station" alt="gzip size">
   <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
 </div>
 
