@@ -5,13 +5,18 @@ import styled from 'styled-components';
 export function Header() {
   return (
     <StyledHeader>
-      <Left>🚉 React Station</Left>
+      <Left>
+        <span role="img" aria-label="station">
+          🚉{' '}
+        </span>
+        React Station
+      </Left>
       <Center>
         <Link to="/">Update</Link>
         <Link to="async-calls">Async Calls</Link>
         <Link to="mount-unmount">Mount/Unmount</Link>
       </Center>
-      <Right/>
+      <Right />
     </StyledHeader>
   );
 }

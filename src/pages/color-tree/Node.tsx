@@ -1,8 +1,8 @@
-import React, { memo } from "react";
-import styled from "styled-components";
-import { useStore } from "../../lib";
-import { store } from "./ColorTree";
-import { findNode } from "./stateUtils";
+import React, { memo } from 'react';
+import styled from 'styled-components';
+import { useStore } from '../../lib';
+import { store } from './ColorTree';
+import { findNode } from './stateUtils';
 
 interface NodeProps {
   id: string;
