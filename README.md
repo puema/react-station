@@ -54,16 +54,17 @@ const actions = {
 // Multiple instances of different stores can be created
 const store = createStore(initialState, actions);`
 
-// Usage in a React Component is super simple
-const { state, actions } = useStore(store);
-// Or select a part of the state to avoid unnecessary rerenders
-const { count, actions } = useStore(store, s => s.count);
-
-const { add } = actions;
-
-add(1)   // ok
-add('1') // Argument of type '"1"' is not 
-         // assignable to parameter of type 'number'.
-
+export const Component = () => { 
+  // Simply retrieve state and actions via hooks
+  const { state, actions } = useStore(store);
+  // Or select a part of the state to avoid unnecessary rerenders
+  const { state2, actions2 } = useStore(store, s => s.count);
+  
+  const { add } = actions;
+  
+  add(1)   // ok
+  add('1') // Argument of type '"1"' is not 
+           // assignable to parameter of type 'number'.
+}
 
 ```
