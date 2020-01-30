@@ -52,7 +52,7 @@ const actions = {
 };
 
 // Multiple instances of different stores can be created
-const store = createStore(initialState, actions);`
+const store = createStore(initialState, actions);
 
 export const Component = () => { 
   // Simply retrieve state and actions via hooks
