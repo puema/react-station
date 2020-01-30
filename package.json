@@ -1,7 +1,7 @@
 {
   "name": "react-station",
   "author": "Marcel Puetz",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "homepage": "http://puema.github.io/react-station/",
   "main": "dist",
@@ -15,6 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint src --ext js,jsx,ts,tsx",
+    "prepublish": "yarn compile",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
