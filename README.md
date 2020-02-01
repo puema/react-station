@@ -15,7 +15,7 @@
       <img src="https://img.shields.io/npm/dw/react-station.svg?style=flat-square" alt="npm downloads">
     </a>
     <a href="https://bundlephobia.com/result?p=react-station">
-      <img src="https://badgen.net/bundlephobia/minzip/react-station?style=flat-square" alt="gzip size">
+      <img src="https://img.shields.io/bundlephobia/minzip/react-station?style=flat-square" alt="gzip size">
     </a>
     <a href="https://prettier.io/">
       <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
