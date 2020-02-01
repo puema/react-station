@@ -7,7 +7,20 @@
     Easy to Use • Hooks • State Selection • Optimized Rerenders • Typesafe • Async Support<br/>
     <a href="https://puema.github.io/react-station/">Demo</a>
   </p>
-  <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+  <p>
+    <a href="https://www.npmjs.org/package/react-station">
+      <img src="https://img.shields.io/npm/v/react-station.svg?style=flat-square" alt="npm version">
+    </a>
+    <a href="https://www.npmjs.org/package/react-station">
+      <img src="https://img.shields.io/npm/dw/react-station.svg?style=flat-square" alt="npm downloads">
+    </a>
+    <a href="https://bundlephobia.com/result?p=react-station">
+      <img src="https://badgen.net/bundlephobia/minzip/react-station" alt="gzip size">
+    </a>
+    <a href="https://prettier.io/">
+      <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square">
+    </a>
+  </p>
 </div>
 
 ## Why
@@ -34,17 +47,17 @@ const actions = {
     // The return value should be a Partial<State> and will be merged
     return { count: count + 1 };
   },
-  
+
   // Payload is available as following parameters
   add({ count }: State, value: number) {
     return {
       count: count + value,
     };
   },
-  
+
   // Actions can also be async
   async calculateSum({ count }: State, value: number) {
-    const result = await calculateSum(count, value)
+    const result = await calculateSum(count, value);
     return {
       count: result,
     };
@@ -54,17 +67,16 @@ const actions = {
 // Multiple instances of different stores can be created
 const store = createStore(initialState, actions);
 
-export const Component = () => { 
+export const Component = () => {
   // Simply retrieve state and actions via hooks
   const { state, actions } = useStore(store);
   // Or select a part of the state to avoid unnecessary rerenders
   const { state2, actions2 } = useStore(store, s => s.count);
-  
-  const { add } = actions;
-  
-  add(1)   // ok
-  add('1') // Argument of type '"1"' is not 
-           // assignable to parameter of type 'number'.
-}
 
+  const { add } = actions;
+
+  add(1); // ok
+  add('1'); // Argument of type '"1"' is not
+  // assignable to parameter of type 'number'.
+};
 ```
