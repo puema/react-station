@@ -57,7 +57,9 @@ const actions = {
 
   // Actions can also be async
   async calculateSum({ count }: State, value: number) {
-    const result = await calculateSum(count, value);
+    const result = await asyncCalculation(count, value);
+    // Make sure to access state after async calls via
+    // store.getState() to avoid race conditions
     return {
       count: result,
     };
@@ -71,12 +73,11 @@ export const Component = () => {
   // Simply retrieve state and actions via hooks
   const { state, actions } = useStore(store);
   // Or select a part of the state to avoid unnecessary rerenders
-  const { state2, actions2 } = useStore(store, s => s.count);
+  const { state: state2 } = useStore(store, s => s.count);
 
   const { add } = actions;
 
   add(1); // ok
-  add('1'); // Argument of type '"1"' is not
-  // assignable to parameter of type 'number'.
+  add('1'); // Error: '1' is not assignable to parameter of type 'number'.
 };
 ```
