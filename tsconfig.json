@@ -21,7 +21,8 @@
     "importHelpers": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationMap": true,
+    "noEmit": true
   },
   "include": [
     "src/lib"

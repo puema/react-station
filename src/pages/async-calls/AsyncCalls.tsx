@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { createStore, Store, useStore } from '../../lib';
 
@@ -35,6 +35,10 @@ export function AsyncCalls() {
   const { state, actions } = useStore(store);
   const { count, loading } = state;
   const { add } = actions;
+
+  useEffect(() => {
+    add(1);
+  }, [add]);
 
   return (
     <StyledAsyncCalls>

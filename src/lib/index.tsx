@@ -21,7 +21,7 @@ export function createStore<S, A extends ActionMap<S>>(
     listeners.forEach(listener => listener());
   }
 
-  return {
+  const store = {
     getState() {
       return state;
     },
@@ -52,10 +52,13 @@ export function createStore<S, A extends ActionMap<S>>(
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
-      actions = bindActions(this, initialActions);
       return { state, actions };
     },
   };
+
+  actions = bindActions(store, initialActions);
+
+  return store;
 }
 
 export function useStore<S, A extends ActionMap<S>>(store: Store<S, A>, select?: (s: S) => any) {
