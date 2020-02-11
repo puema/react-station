@@ -15,11 +15,11 @@ type Actions = {
 };
 
 const actions = ({ getActions }: Store<State, Actions>) => ({
-  async add(state: State, value: number): Promise<State> {
+  async add({ count }: State, value: number): Promise<State> {
     getActions().load();
-    await expensive();
+    const result = await expensiveCalculation(count, value);
     return {
-      count: state.count + value,
+      count: result,
       loading: false,
     };
   },
@@ -48,10 +48,10 @@ export function AsyncCalls() {
   );
 }
 
-async function expensive() {
+async function expensiveCalculation(a: number, b: number): Promise<number> {
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve();
+      resolve(a + b);
     }, 1000);
   });
 }
